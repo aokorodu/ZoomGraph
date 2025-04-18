@@ -1,18 +1,18 @@
 const ns = "http://www.w3.org/2000/svg";
 
 let high = {
-  end: 500,
-  range: 100,
+  end: 100,
+  range: 30,
   color: "#9ED198",
 };
 let med = {
-  end: 475,
-  range: 50,
+  end: 95,
+  range: 20,
   color: "#518162",
 };
 let low = {
-  end: 462,
-  range: 25,
+  end: 90,
+  range: 10,
   color: "#24582E",
 };
 
@@ -21,9 +21,15 @@ const h = 500;
 const xmin = -50;
 const ymin = -50;
 
-const midX = w / 2;
-const startY = 50;
-const midY = startY;
+// position percentages
+const midXPercentage = 50;
+const startYPercentage = 0;
+const midYPercentage = startYPercentage;
+
+// start and end positions
+const startY = getPos(startYPercentage);
+const midX = getPos(midXPercentage);
+const midY = getPos(midYPercentage);
 
 // zoom positions
 const zoomIn = {
@@ -72,8 +78,8 @@ function init() {
 
 function initUI() {
   amountSlider.addEventListener("input", () => {
-    amountValue = 200 - Number(amountSlider.value);
-    console.log("amountValue: ", amountValue);
+    amountValue = Number(amountSlider.value);
+    // console.log("amountValue: ", amountValue);
     drawGraph(highPath, high);
     drawGraph(medPath, med);
     drawGraph(lowPath, low);
@@ -84,10 +90,20 @@ function initUI() {
   });
 }
 
+function getPos(percentage) {
+  return (percentage / 100) * w;
+}
+
 function drawGraph(path, points) {
-  const str = `M0,${startY} Q${midX},${midY} ${w},${
-    points.end - amountValue
-  } V${points.end - points.range - amountValue} Q${midX},${midY} 0,${startY} Z`;
+  // console.log("points: ", points);
+  // console.log("endtop: ", points.end);
+  // console.log("amountValue: ", amountValue);
+  const endTop = getPos(points.end - (100 - Number(amountValue)));
+  console.log("endTop: ", endTop);
+  const endBottom = endTop - getPos(points.range);
+  console.log("endBottom: ", endBottom);
+  const str = `M0,${startY} Q${midX},${midY} ${w},${endTop} V${endBottom} Q${midX},${midY} 0,${startY} Z`;
+  // console.log("str: ", str);
   path.setAttribute("d", str);
   path.setAttribute("fill", points.color);
 }
