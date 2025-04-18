@@ -46,9 +46,9 @@ const zoomOut = {
   height: 500,
 };
 
-// svgs
 const icons = document.getElementById("icons");
 const main = document.getElementById("main");
+const retireRect = document.getElementById("retire-rect");
 
 // holders
 const holder = document.getElementById("holder");
@@ -69,6 +69,7 @@ init();
 
 function init() {
   amountValue = Number(amountSlider.value);
+  retireRect.setAttribute("fill", getColor(amountValue));
   initUI();
   drawGraph(highPath, high);
   drawGraph(medPath, med);
@@ -81,6 +82,8 @@ function initUI() {
     drawGraph(highPath, high);
     drawGraph(medPath, med);
     drawGraph(lowPath, low);
+
+    retireRect.setAttribute("fill", getColor(amountValue));
   });
 }
 
@@ -89,9 +92,6 @@ function getPos(percentage) {
 }
 
 function drawGraph(path, points) {
-  // console.log("points: ", points);
-  // console.log("endtop: ", points.end);
-  // console.log("amountValue: ", amountValue);
   const endTop = getPos(
     points.end + points.range / 2 - (100 - Number(amountValue))
   );
@@ -101,7 +101,6 @@ function drawGraph(path, points) {
   );
   console.log("endBottom: ", endBottom);
   const str = `M0,${startY} Q${midX},${midY} ${w},${endTop} V${endBottom} Q${midX},${midY} 0,${startY} Z`;
-  // console.log("str: ", str);
   path.setAttribute("d", str);
   path.setAttribute("fill", points.color);
 }
@@ -118,4 +117,9 @@ function animate() {
     duration: 2.5,
     ease: "power1.inOut",
   });
+}
+
+function getColor(percentage) {
+  // hue 0-130
+  return `hsl(${((percentage - 30) / 100) * 130} 100% 50%)`;
 }
