@@ -22,8 +22,8 @@ const xmin = -50;
 const ymin = -50;
 
 // position percentages
-const midXPercentage = 50;
-const startYPercentage = 0;
+const midXPercentage = 30;
+const startYPercentage = 5;
 const midYPercentage = startYPercentage;
 
 // start and end positions
@@ -46,7 +46,14 @@ const zoomOut = {
   height: 600,
 };
 
-const zoomTarget = {
+let zoomCurrent = {
+  xmin: -50,
+  ymin: -50,
+  width: 600,
+  height: 600,
+};
+
+let zoomTarget = {
   xmin: -50,
   ymin: -50,
   width: 600,
@@ -99,7 +106,11 @@ function initUI() {
   });
 
   carButton.addEventListener("click", () => {
-    zoom(zoomIn);
+    console.log("zoomCurrent: ", zoomCurrent);
+    console.log("zoomIn: ", zoomIn);
+    console.log("zoomCurrent == zoomIn: ", zoomCurrent == zoomIn);
+    const newZoom = zoomCurrent.xmin == zoomIn.xmin ? zoomOut : zoomIn;
+    zoom(newZoom);
   });
 }
 
@@ -141,12 +152,13 @@ function getColor(percentage) {
 }
 
 function zoom(points) {
-  zoomTimeline = gsap.to(zoomTarget, {
+  zoomTarget = points;
+  zoomTimeline = gsap.to(zoomCurrent, {
     xmin: points.xmin,
     ymin: points.ymin,
     width: points.width,
     height: points.height,
-    duration: 1.5,
+    duration: 0.667,
     ease: "power1.inOut",
     onUpdate: updateViewbox,
     onComplete: () => {
@@ -156,7 +168,6 @@ function zoom(points) {
 }
 
 function updateViewbox() {
-  console.log("zoomTarget: ", zoomTarget);
-  const viewBox = `${zoomTarget.xmin} ${zoomTarget.ymin} ${zoomTarget.width} ${zoomTarget.height}`;
+  const viewBox = `${zoomCurrent.xmin} ${zoomCurrent.ymin} ${zoomCurrent.width} ${zoomCurrent.height}`;
   main.setAttribute("viewBox", viewBox);
 }
