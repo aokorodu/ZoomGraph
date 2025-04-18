@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/my.css" />
+  </head>
+  <body>
+    <div class="holder">
+      <div id="svg-holder">
+        <svg id="main" width="600" height="600" viewBox="-50 -50 600 600">
+          <g id="holder" transform="">
+            <rect
+              x="0"
+              y="0"
+              width="500"
+              height="500"
+              fill="none"
+              stroke="#212121"
+            />
+            <g id="icons">
+              <rect
+                x="0"
+                y="0"
+                width="500"
+                height="500"
+                fill="#fafafa"
+                stroke="#212121"
+              />
+              <g id="car" transform="translate(25,0)">
+                <image
+                  href="https://assets.codepen.io/256486/icon_car.svg"
+                  x="-12"
+                  y="-25"
+                  width="24"
+                  height="24"
+                />
+                <path
+                  d="M 0 0 V500"
+                  fill="none"
+                  stroke="#656565"
+                  stroke-width="1"
+                  stroke-dasharray="3 5"
+                ></path>
+              </g>
+              <g id="home" transform="translate(100 0)">
+                <image
+                  href="https://assets.codepen.io/256486/icon_home.svg"
+                  x="-12"
+                  y="-25"
+                  width="24"
+                  height="24"
+                />
+                <path
+                  d="M 0 0 V500"
+                  fill="none"
+                  stroke="#656565"
+                  stroke-width="1"
+                  stroke-dasharray="3 5"
+                ></path>
+              </g>
+              <g id="retire" transform="translate(225 0)">
+                <image
+                  href="https://assets.codepen.io/256486/icon_sun.svg"
+                  x="-15"
+                  y="-30"
+                  width="30"
+                  height="30"
+                />
+                <path
+                  d="M 0 0 V500"
+                  fill="none"
+                  stroke="#656565"
+                  stroke-width="1"
+                  stroke-dasharray="5"
+                ></path>
+                <rect x="0" y="0" width="100" height="500" fill="#eaeaea" />
+              </g>
+            </g>
+            <g id="graph-holder" transform="translate(0 500) scale(1,-1)">
+              <path id="high-path" d="" fill-opacity=".5" stroke="green"></path>
+              <path
+                id="med-path"
+                d=""
+                fill-opacity=".5"
+                stroke="none"
+                stroke-width="1"
+              ></path>
+              <path
+                id="low-path"
+                d=""
+                fill-opacity=".5"
+                stroke="none"
+                stroke-width="1"
+              ></path>
+            </g>
+            <g id="numbers">
+              <g
+                id="lines"
+                stroke="#000"
+                stroke-opacity=".1"
+                transform="translate(0,-200)"
+              >
+                <line x1="0" y1="599.5" x2="500" y2="599.5" />
+                <text
+                  x="-10"
+                  y="599.5"
+                  font-size="10"
+                  fill="#000"
+                  text-anchor="end"
+                  dominant-baseline="middle"
+                >
+                  100
+                </text>
+                <line x1="0" y1="499.5" x2="500" y2="499.5" />
+                <text
+                  x="-10"
+                  y="499.5"
+                  font-size="10"
+                  fill="#000"
+                  text-anchor="end"
+                  dominant-baseline="middle"
+                >
+                  200
+                </text>
+                <line x1="0" y1="399.5" x2="500" y2="399.5" />
+                <text
+                  x="-10"
+                  y="399.5"
+                  font-size="10"
+                  fill="#000"
+                  text-anchor="end"
+                  dominant-baseline="middle"
+                >
+                  300
+                </text>
+                <line x1="0" y1="299.5" x2="500" y2="299.5" />
+                <text
+                  x="-10"
+                  y="299.5"
+                  font-size="10"
+                  fill="#000"
+                  text-anchor="end"
+                  dominant-baseline="middle"
+                >
+                  400
+                </text>
+                <line x1="0" y1="199.5" x2="500" y2="199.5" />
+                <text
+                  x="-10"
+                  y="199.5"
+                  font-size="10"
+                  fill="#000"
+                  text-anchor="end"
+                  dominant-baseline="middle"
+                >
+                  600
+                </text>
+                <line x1="0" y1="99.5" x2="500" y2="99.5001" />
+                <text
+                  x="-10"
+                  y="99.5"
+                  font-size="10"
+                  fill="#000"
+                  text-anchor="end"
+                  dominant-baseline="middle"
+                >
+                  600
+                </text>
+                <line x1="0" y1="0.5" x2="500" y2="0.500061" />
+                <text
+                  x="-10"
+                  y="0.5"
+                  font-size="10"
+                  fill="#000"
+                  text-anchor="end"
+                  dominant-baseline="middle"
+                >
+                  700
+                </text>
+              </g>
+              <g id="years" transform="translate(0,510)">
+                <g id="year-0" transform="translate(0,0)">
+                  <text
+                    x="0"
+                    y="0"
+                    font-size="10"
+                    fill="#000"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                  >
+                    2025
+                  </text>
+                </g>
+                <g id="year-1" transform="translate(100,0)">
+                  <text
+                    x="0"
+                    y="0"
+                    font-size="10"
+                    fill="#000"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                  >
+                    2030
+                  </text>
+                </g>
+                <g id="year-2" transform="translate(200,0)">
+                  <text
+                    x="0"
+                    y="0"
+                    font-size="10"
+                    fill="#000"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                  >
+                    2035
+                  </text>
+                </g>
+                <g id="year-3" transform="translate(300,0)">
+                  <text
+                    x="0"
+                    y="0"
+                    font-size="10"
+                    fill="#000"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                  >
+                    2040
+                  </text>
+                </g>
+                <g id="year-4" transform="translate(400,0)">
+                  <text
+                    x="0"
+                    y="0"
+                    font-size="10"
+                    fill="#000"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                  >
+                    2045
+                  </text>
+                </g>
+                <g id="year-5" transform="translate(500,0)">
+                  <text
+                    x="0"
+                    y="0"
+                    font-size="10"
+                    fill="#000"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                  >
+                    2050
+                  </text>
+                </g>
+              </g>
+            </g>
+            <g id="border">
+              <path
+                d="M 0 0 V500 H500"
+                fill="none"
+                stroke="#000"
+                stroke-width="1"
+              ></path>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div>
+        <label>
+          <span>contribution amount</span>
+          <input
+            id="amount"
+            type="range"
+            value="100"
+            min="-100"
+            max="200"
+            step=".1"
+            class="h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-200 disabled:cursor-not-allowed"
+          />
+        </label>
+        <label>
+          <span>scale</span>
+          <input
+            id="scale"
+            type="range"
+            value="100"
+            min="100"
+            max="200"
+            step=".1"
+            class="h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-200 disabled:cursor-not-allowed"
+          />
+        </label>
+      </div>
+      <div>
+        <button
+          id="showall-button"
+          class="text-white bg-gray-800 py-1 px-10 my-5 hover:bg-gray-300 rounded"
+        >
+          show all
+        </button>
+        <button
+          id="hideall-button"
+          class="text-white bg-gray-800 py-1 px-10 my-5 hover:bg-gray-300 rounded"
+        >
+          hide all
+        </button>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</html>
