@@ -22,8 +22,8 @@ const xmin = -50;
 const ymin = -50;
 
 // position percentages
-const midXPercentage = 30;
-const startYPercentage = 5;
+const midXPercentage = 50;
+const startYPercentage = 0;
 const midYPercentage = startYPercentage;
 
 // start and end positions
@@ -70,11 +70,19 @@ const retireRect = document.getElementById("retire-rect");
 const holder = document.getElementById("holder");
 const borderHolder = document.getElementById("border-holder");
 const graphHolder = document.getElementById("graph-holder");
+const pointHolder = document.getElementById("point-holder");
 
 // paths
 const highPath = document.getElementById("high-path");
 const medPath = document.getElementById("med-path");
 const lowPath = document.getElementById("low-path");
+
+// points
+const carPoint = document.getElementById("car-point");
+const homePoint = document.getElementById("home-point");
+const retirePoint = document.getElementById("retire-point");
+const downsizePoint = document.getElementById("downsize-point");
+const collegePoint = document.getElementById("college-point");
 
 // sliders
 const amountSlider = document.getElementById("amount");
@@ -119,17 +127,38 @@ function getPos(percentage) {
 }
 
 function drawGraph(path, points) {
-  const endTop = getPos(
-    points.end + points.range / 2 - (100 - Number(amountValue))
-  );
-  console.log("endTop: ", endTop);
-  const endBottom = getPos(
-    points.end - points.range / 2 - (100 - Number(amountValue))
-  );
-  console.log("endBottom: ", endBottom);
+  const endY = getPos(points.end - (100 - Number(amountValue)));
+  console.log("endY: ", endY);
+  const endTop = endY + getPos(points.range / 2);
+  const endBottom = endY - getPos(points.range / 2);
   const str = `M0,${startY} Q${midX},${midY} ${w},${endTop} V${endBottom} Q${midX},${midY} 0,${startY} Z`;
   path.setAttribute("d", str);
   path.setAttribute("fill", points.color);
+
+  // const opposite = endY;
+  // const adjacent = 500;
+  // const hypotenuse = Math.sqrt(opposite * opposite + adjacent * adjacent);
+  // const angle = Math.asin(opposite / hypotenuse);
+
+  // const smallAdjacent = midX;
+  // const smallOpposite = Math.tan(angle) * smallAdjacent;
+  // const smallHypotenuse = Math.sqrt(
+  //   smallAdjacent * smallAdjacent + smallOpposite * smallOpposite
+  // );
+  // const t = smallHypotenuse / hypotenuse;
+  // console.log("t: ", t);
+  // console.log("175/500: ", 175 / 500);
+  const edPoint = getBezierPoint(
+    175 / 500,
+    { x: 0, y: 0 },
+    { x: 500 * 0.3, y: 0 },
+    { x: 500, y: endY }
+  );
+
+  console.log("edPoint: ", edPoint);
+
+  collegePoint.setAttribute("cx", edPoint.x);
+  collegePoint.setAttribute("cy", edPoint.y);
 }
 
 function animate() {
@@ -170,4 +199,11 @@ function zoom(points) {
 function updateViewbox() {
   const viewBox = `${zoomCurrent.xmin} ${zoomCurrent.ymin} ${zoomCurrent.width} ${zoomCurrent.height}`;
   main.setAttribute("viewBox", viewBox);
+}
+
+function getBezierPoint(t, p0, p1, p2) {
+  const x = t * 500;
+  const y = (1 - t) * (1 - t) * p0.y + 2 * (1 - t) * t * p1.y + t * t * p2.y;
+
+  return { x, y };
 }
