@@ -34,7 +34,7 @@
               />
               <g id="car" transform="translate(25,0)">
                 <image
-                  href="https://assets.codepen.io/256486/icon_car.svg"
+                  href="assets/icon_car.svg"
                   x="-12"
                   y="-25"
                   width="24"
@@ -50,7 +50,7 @@
               </g>
               <g id="home" transform="translate(100 0)">
                 <image
-                  href="https://assets.codepen.io/256486/icon_home.svg"
+                  href="assets/icon_home.svg"
                   x="-12"
                   y="-25"
                   width="24"
@@ -64,13 +64,29 @@
                   stroke-dasharray="3 5"
                 ></path>
               </g>
-              <g id="retire" transform="translate(225 0)">
+              <g id="education" transform="translate(175 0)">
                 <image
-                  href="https://assets.codepen.io/256486/icon_sun.svg"
-                  x="-15"
-                  y="-30"
-                  width="30"
-                  height="30"
+                  href="assets/icon_school.svg"
+                  x="-12"
+                  y="-25"
+                  width="24"
+                  height="24"
+                />
+                <path
+                  d="M 0 0 V500"
+                  fill="none"
+                  stroke="#656565"
+                  stroke-width="1"
+                  stroke-dasharray="3 5"
+                ></path>
+              </g>
+              <g id="retire" transform="translate(350 0)">
+                <image
+                  href="assets/icon_tree.svg"
+                  x="-14"
+                  y="-32"
+                  width="28"
+                  height="28"
                 />
                 <path
                   d="M 0 0 V500"
@@ -79,22 +95,45 @@
                   stroke-width="1"
                   stroke-dasharray="5"
                 ></path>
-                <rect x="0" y="0" width="100" height="500" fill="#eaeaea" />
+                <rect
+                  x="0"
+                  y="0"
+                  width="150"
+                  height="500"
+                  fill="#E1EEBC"
+                  fill-opacity=".5"
+                />
+              </g>
+              <g id="downsize" transform="translate(425 0)">
+                <image
+                  href="assets/icon_home_2.svg"
+                  x="-12"
+                  y="-25"
+                  width="24"
+                  height="24"
+                />
+                <path
+                  d="M 0 0 V500"
+                  fill="none"
+                  stroke="#656565"
+                  stroke-width="1"
+                  stroke-dasharray="3 5"
+                ></path>
               </g>
             </g>
             <g id="graph-holder" transform="translate(0 500) scale(1,-1)">
-              <path id="high-path" d="" fill-opacity=".5" stroke="green"></path>
+              <path id="high-path" d="" fill-opacity="1" stroke="green"></path>
               <path
                 id="med-path"
                 d=""
-                fill-opacity=".5"
+                fill-opacity="1"
                 stroke="none"
                 stroke-width="1"
               ></path>
               <path
                 id="low-path"
                 d=""
-                fill-opacity=".5"
+                fill-opacity="1"
                 stroke="none"
                 stroke-width="1"
               ></path>
@@ -206,7 +245,7 @@
                     text-anchor="middle"
                     dominant-baseline="middle"
                   >
-                    2030
+                    2035
                   </text>
                 </g>
                 <g id="year-2" transform="translate(200,0)">
@@ -218,7 +257,7 @@
                     text-anchor="middle"
                     dominant-baseline="middle"
                   >
-                    2035
+                    2045
                   </text>
                 </g>
                 <g id="year-3" transform="translate(300,0)">
@@ -230,7 +269,7 @@
                     text-anchor="middle"
                     dominant-baseline="middle"
                   >
-                    2040
+                    2055
                   </text>
                 </g>
                 <g id="year-4" transform="translate(400,0)">
@@ -242,7 +281,7 @@
                     text-anchor="middle"
                     dominant-baseline="middle"
                   >
-                    2045
+                    2065
                   </text>
                 </g>
                 <g id="year-5" transform="translate(500,0)">
@@ -254,7 +293,7 @@
                     text-anchor="middle"
                     dominant-baseline="middle"
                   >
-                    2050
+                    2075
                   </text>
                 </g>
               </g>
@@ -284,31 +323,37 @@
             class="h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-200 disabled:cursor-not-allowed"
           />
         </label>
-        <label>
-          <span>scale</span>
-          <input
-            id="scale"
-            type="range"
-            value="100"
-            min="100"
-            max="200"
-            step=".1"
-            class="h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-200 disabled:cursor-not-allowed"
-          />
-        </label>
       </div>
       <div>
         <button
-          id="showall-button"
+          id="car-button"
           class="text-white bg-gray-800 py-1 px-10 my-5 hover:bg-gray-300 rounded"
         >
-          show all
+          car
         </button>
         <button
-          id="hideall-button"
+          id="home-button"
           class="text-white bg-gray-800 py-1 px-10 my-5 hover:bg-gray-300 rounded"
         >
-          hide all
+          home
+        </button>
+        <button
+          id="college-button"
+          class="text-white bg-gray-800 py-1 px-10 my-5 hover:bg-gray-300 rounded"
+        >
+          college
+        </button>
+        <button
+          id="downsize-button"
+          class="text-white bg-gray-800 py-1 px-10 my-5 hover:bg-gray-300 rounded"
+        >
+          downsize
+        </button>
+        <button
+          id="retire-button"
+          class="text-white bg-gray-800 py-1 px-10 my-5 hover:bg-gray-300 rounded"
+        >
+          retire
         </button>
       </div>
     </div>

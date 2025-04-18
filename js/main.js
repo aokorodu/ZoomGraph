@@ -1,19 +1,19 @@
 const ns = "http://www.w3.org/2000/svg";
 
 let high = {
-  end: 100,
+  end: 85,
   range: 30,
-  color: "#9ED198",
+  color: "#90C67C",
 };
 let med = {
-  end: 95,
+  end: 85,
   range: 20,
-  color: "#518162",
+  color: "#67AE6E",
 };
 let low = {
-  end: 90,
+  end: 85,
   range: 10,
-  color: "#24582E",
+  color: "#328E6E",
 };
 
 const w = 500;
@@ -62,7 +62,6 @@ const lowPath = document.getElementById("low-path");
 
 // sliders
 const amountSlider = document.getElementById("amount");
-const scaleSlider = document.getElementById("scale");
 
 let amountValue = 0;
 
@@ -79,14 +78,9 @@ function init() {
 function initUI() {
   amountSlider.addEventListener("input", () => {
     amountValue = Number(amountSlider.value);
-    // console.log("amountValue: ", amountValue);
     drawGraph(highPath, high);
     drawGraph(medPath, med);
     drawGraph(lowPath, low);
-  });
-
-  scaleSlider.addEventListener("input", () => {
-    const scaleValue = Number(scaleSlider.value) / 100;
   });
 }
 
@@ -98,9 +92,13 @@ function drawGraph(path, points) {
   // console.log("points: ", points);
   // console.log("endtop: ", points.end);
   // console.log("amountValue: ", amountValue);
-  const endTop = getPos(points.end - (100 - Number(amountValue)));
+  const endTop = getPos(
+    points.end + points.range / 2 - (100 - Number(amountValue))
+  );
   console.log("endTop: ", endTop);
-  const endBottom = endTop - getPos(points.range);
+  const endBottom = getPos(
+    points.end - points.range / 2 - (100 - Number(amountValue))
+  );
   console.log("endBottom: ", endBottom);
   const str = `M0,${startY} Q${midX},${midY} ${w},${endTop} V${endBottom} Q${midX},${midY} 0,${startY} Z`;
   // console.log("str: ", str);
