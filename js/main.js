@@ -42,9 +42,18 @@ const zoomIn = {
 const zoomOut = {
   xmin: -50,
   ymin: -50,
-  width: 500,
-  height: 500,
+  width: 600,
+  height: 600,
 };
+
+const zoomTarget = {
+  xmin: -50,
+  ymin: -50,
+  width: 600,
+  height: 600,
+};
+
+let zoomTimeline = null;
 
 const icons = document.getElementById("icons");
 const main = document.getElementById("main");
@@ -62,6 +71,9 @@ const lowPath = document.getElementById("low-path");
 
 // sliders
 const amountSlider = document.getElementById("amount");
+
+// buttons
+const carButton = document.getElementById("car-button");
 
 let amountValue = 0;
 
@@ -84,6 +96,10 @@ function initUI() {
     drawGraph(lowPath, low);
 
     retireRect.setAttribute("fill", getColor(amountValue));
+  });
+
+  carButton.addEventListener("click", () => {
+    zoom(zoomIn);
   });
 }
 
@@ -122,4 +138,25 @@ function animate() {
 function getColor(percentage) {
   // hue 0-130
   return `hsl(${((percentage - 30) / 100) * 130} 100% 50%)`;
+}
+
+function zoom(points) {
+  zoomTimeline = gsap.to(zoomTarget, {
+    xmin: points.xmin,
+    ymin: points.ymin,
+    width: points.width,
+    height: points.height,
+    duration: 1.5,
+    ease: "power1.inOut",
+    onUpdate: updateViewbox,
+    onComplete: () => {
+      zoomTimeline = null;
+    },
+  });
+}
+
+function updateViewbox() {
+  console.log("zoomTarget: ", zoomTarget);
+  const viewBox = `${zoomTarget.xmin} ${zoomTarget.ymin} ${zoomTarget.width} ${zoomTarget.height}`;
+  main.setAttribute("viewBox", viewBox);
 }
