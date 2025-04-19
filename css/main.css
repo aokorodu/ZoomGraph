@@ -11,6 +11,18 @@ svg {
   border: 1px solid #cccccc;
 }
 
+#graph-title-text {
+  font-size: 40px;
+  text-anchor: start;
+  font-weight: 200;
+}
+
+#graph-subtitle-text {
+  font-size: 60px;
+  text-anchor: start;
+  font-weight: 600;
+}
+
 .tooltip {
   opacity: 0;
   transition-property: opacity;
@@ -61,7 +73,7 @@ svg {
   color: white;
   font-size: 10px;
   text-align: left;
-  font-weight: bold;
+  font-weight: 200;
   width: 100%;
 }
 
