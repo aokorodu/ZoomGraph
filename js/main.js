@@ -32,11 +32,25 @@ const midX = getPos(midXPercentage);
 const midY = getPos(midYPercentage);
 
 // zoom positions
-const zoomIn = {
+const carZoom = {
   xmin: -25,
-  ymin: 225,
-  width: 300,
-  height: 300,
+  ymin: 360,
+  width: 150,
+  height: 150,
+};
+
+const homeZoom = {
+  xmin: 50,
+  ymin: 350,
+  width: 150,
+  height: 150,
+};
+
+const collegeZoom = {
+  xmin: 100,
+  ymin: 340,
+  width: 150,
+  height: 150,
 };
 
 const zoomOut = {
@@ -89,6 +103,10 @@ const amountSlider = document.getElementById("amount");
 
 // buttons
 const carButton = document.getElementById("car-button");
+const homeButton = document.getElementById("home-button");
+const retireButton = document.getElementById("retire-button");
+const downsizeButton = document.getElementById("downsize-button");
+const collegeButton = document.getElementById("college-button");
 
 let amountValue = 0;
 
@@ -101,6 +119,11 @@ function init() {
   drawGraph(highPath, high);
   drawGraph(medPath, med);
   drawGraph(lowPath, low);
+  positionPoint(75, carPoint);
+  positionPoint(125, homePoint);
+  positionPoint(350, retirePoint);
+  positionPoint(425, downsizePoint);
+  positionPoint(175, collegePoint);
 }
 
 function initUI() {
@@ -109,15 +132,28 @@ function initUI() {
     drawGraph(highPath, high);
     drawGraph(medPath, med);
     drawGraph(lowPath, low);
+    positionPoint(75, carPoint);
+    positionPoint(125, homePoint);
+    positionPoint(350, retirePoint);
+    positionPoint(425, downsizePoint);
+    positionPoint(175, collegePoint);
 
     retireRect.setAttribute("fill", getColor(amountValue));
   });
 
   carButton.addEventListener("click", () => {
-    console.log("zoomCurrent: ", zoomCurrent);
-    console.log("zoomIn: ", zoomIn);
-    console.log("zoomCurrent == zoomIn: ", zoomCurrent == zoomIn);
-    const newZoom = zoomCurrent.xmin == zoomIn.xmin ? zoomOut : zoomIn;
+    const newZoom = zoomCurrent.xmin == carZoom.xmin ? zoomOut : carZoom;
+    zoom(newZoom);
+  });
+  homeButton.addEventListener("click", () => {
+    console.log("homeZoom: ", homeZoom);
+    const newZoom = zoomCurrent.xmin == homeZoom.xmin ? zoomOut : homeZoom;
+    zoom(newZoom);
+  });
+  collegeButton.addEventListener("click", () => {
+    console.log("collegeZoom: ", collegeZoom);
+    const newZoom =
+      zoomCurrent.xmin == collegeZoom.xmin ? zoomOut : collegeZoom;
     zoom(newZoom);
   });
 }
@@ -135,21 +171,23 @@ function drawGraph(path, points) {
   path.setAttribute("d", str);
   path.setAttribute("fill", points.color);
 
-  // const opposite = endY;
-  // const adjacent = 500;
-  // const hypotenuse = Math.sqrt(opposite * opposite + adjacent * adjacent);
-  // const angle = Math.asin(opposite / hypotenuse);
-
-  // const smallAdjacent = midX;
-  // const smallOpposite = Math.tan(angle) * smallAdjacent;
-  // const smallHypotenuse = Math.sqrt(
-  //   smallAdjacent * smallAdjacent + smallOpposite * smallOpposite
+  // const edPoint = getBezierPoint(
+  //   175 / 500,
+  //   { x: 0, y: 0 },
+  //   { x: 500 * 0.3, y: 0 },
+  //   { x: 500, y: endY }
   // );
-  // const t = smallHypotenuse / hypotenuse;
-  // console.log("t: ", t);
-  // console.log("175/500: ", 175 / 500);
+
+  // console.log("edPoint: ", edPoint);
+
+  // collegePoint.setAttribute("cx", edPoint.x);
+  // collegePoint.setAttribute("cy", edPoint.y);
+}
+
+function positionPoint(xpos, point) {
+  const endY = getPos(high.end - (100 - Number(amountValue)));
   const edPoint = getBezierPoint(
-    175 / 500,
+    xpos / 500,
     { x: 0, y: 0 },
     { x: 500 * 0.3, y: 0 },
     { x: 500, y: endY }
@@ -157,23 +195,23 @@ function drawGraph(path, points) {
 
   console.log("edPoint: ", edPoint);
 
-  collegePoint.setAttribute("cx", edPoint.x);
-  collegePoint.setAttribute("cy", edPoint.y);
+  point.setAttribute("cx", edPoint.x);
+  point.setAttribute("cy", edPoint.y);
 }
 
-function animate() {
-  propertyTween = gsap.timeline({ onUpdate: drawGraph });
-  propertyTween.to(outer, {
-    start: target.start,
-    midtop: midtop,
-    endtop: endtop,
-    endbottom: endbottom,
-    midbottom: midbottom,
-    end: end,
-    duration: 2.5,
-    ease: "power1.inOut",
-  });
-}
+// function animate() {
+//   propertyTween = gsap.timeline({ onUpdate: drawGraph });
+//   propertyTween.to(outer, {
+//     start: target.start,
+//     midtop: midtop,
+//     endtop: endtop,
+//     endbottom: endbottom,
+//     midbottom: midbottom,
+//     end: end,
+//     duration: 2.5,
+//     ease: "power1.inOut",
+//   });
+// }
 
 function getColor(percentage) {
   // hue 0-130
