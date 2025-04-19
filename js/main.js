@@ -62,7 +62,7 @@ const retireZoom = {
 
 const downsizeZoom = {
   xmin: 300,
-  ymin: 180,
+  ymin: 160,
   width: 280,
   height: 280,
 };
