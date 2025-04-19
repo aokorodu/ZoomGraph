@@ -125,13 +125,18 @@ const collegeButton = document.getElementById("college-button");
 // tooltips
 const toolTips = document.querySelectorAll(".tooltip");
 
+// text
+const contributionAmountText = document.getElementById("contribution-amount");
+
 let amountValue = 0;
+const baseContributionValue = 300;
 
 init();
 
 function init() {
   amountValue = Number(amountSlider.value);
   retireRect.setAttribute("fill", getColor(amountValue));
+  updateContributionAmountText();
   initUI();
   drawGraph(highPath, high);
   drawGraph(medPath, med);
@@ -156,6 +161,7 @@ function initUI() {
     positionPoint(175, collegePoint);
 
     retireRect.setAttribute("fill", getColor(amountValue));
+    updateContributionAmountText();
   });
 
   carButton.addEventListener("click", () => {
@@ -214,6 +220,15 @@ function showTooltip(ttName) {
 }
 function getPos(percentage) {
   return (percentage / 100) * w;
+}
+
+function updateContributionAmountText() {
+  contributionAmountText.textContent = `$${(
+    (amountValue / 100) *
+    baseContributionValue
+  )
+    .toLocaleString("en-US", { style: "currency", currency: "USD" })
+    .slice(1)}`;
 }
 
 function drawGraph(path, points) {

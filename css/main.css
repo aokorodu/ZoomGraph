@@ -86,3 +86,10 @@ svg {
   text-align: left;
   padding: 4px;
 }
+
+#contribution-amount {
+  font-size: 30px;
+  font-weight: 500;
+  text-align: left;
+  padding: 4px;
+}
