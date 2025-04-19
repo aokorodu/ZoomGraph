@@ -33,14 +33,14 @@ const midY = getPos(midYPercentage);
 
 // zoom positions
 const carZoom = {
-  xmin: -25,
-  ymin: 360,
+  xmin: -2,
+  ymin: 370,
   width: 150,
   height: 150,
 };
 
 const homeZoom = {
-  xmin: 50,
+  xmin: 60,
   ymin: 350,
   width: 150,
   height: 150,
@@ -48,7 +48,7 @@ const homeZoom = {
 
 const collegeZoom = {
   xmin: 100,
-  ymin: 340,
+  ymin: 350,
   width: 150,
   height: 150,
 };
