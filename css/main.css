@@ -11,6 +11,18 @@ svg {
   border: 1px solid #cccccc;
 }
 
+.tooltip {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 300ms;
+}
+
+.showTooltip {
+  opacity: 1;
+}
+
 .ttHolder {
   padding: 0;
   margin: 0;

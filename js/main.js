@@ -122,6 +122,9 @@ const retireButton = document.getElementById("retire-button");
 const downsizeButton = document.getElementById("downsize-button");
 const collegeButton = document.getElementById("college-button");
 
+// tooltips
+const toolTips = document.querySelectorAll(".tooltip");
+
 let amountValue = 0;
 
 init();
@@ -158,23 +161,33 @@ function initUI() {
   carButton.addEventListener("click", () => {
     const newZoom = zoomCurrent.xmin == carZoom.xmin ? zoomOut : carZoom;
     zoom(newZoom);
+    newZoom.xmin == zoomOut.xmin ? showTooltip("") : showTooltip("car-tooltip");
   });
   homeButton.addEventListener("click", () => {
     // console.log("homeZoom: ", homeZoom);
     const newZoom = zoomCurrent.xmin == homeZoom.xmin ? zoomOut : homeZoom;
     zoom(newZoom);
+    newZoom.xmin == zoomOut.xmin
+      ? showTooltip("")
+      : showTooltip("home-tooltip");
   });
   collegeButton.addEventListener("click", () => {
     // console.log("collegeZoom: ", collegeZoom);
     const newZoom =
       zoomCurrent.xmin == collegeZoom.xmin ? zoomOut : collegeZoom;
     zoom(newZoom);
+    newZoom.xmin == zoomOut.xmin
+      ? showTooltip("")
+      : showTooltip("college-tooltip");
   });
 
   retireButton.addEventListener("click", () => {
     // console.log("retireZoom: ", retireZoom);
     const newZoom = zoomCurrent.xmin == retireZoom.xmin ? zoomOut : retireZoom;
     zoom(newZoom);
+    newZoom.xmin == zoomOut.xmin
+      ? showTooltip("")
+      : showTooltip("retire-tooltip");
   });
 
   downsizeButton.addEventListener("click", () => {
@@ -182,9 +195,23 @@ function initUI() {
     const newZoom =
       zoomCurrent.xmin == downsizeZoom.xmin ? zoomOut : downsizeZoom;
     zoom(newZoom);
+    newZoom.xmin == zoomOut.xmin
+      ? showTooltip("")
+      : showTooltip("downsize-tooltip");
   });
 }
 
+function showTooltip(ttName) {
+  console.log("ttName: ", ttName);
+  toolTips.forEach((tt) => {
+    console.log("tt.id: ", tt.id);
+    if (tt.id == ttName) {
+      tt.classList.add("showTooltip");
+    } else {
+      tt.classList.remove("showTooltip");
+    }
+  });
+}
 function getPos(percentage) {
   return (percentage / 100) * w;
 }
