@@ -48,7 +48,7 @@ const homeZoom = {
 
 const collegeZoom = {
   xmin: 100,
-  ymin: 350,
+  ymin: 335,
   width: 150,
   height: 150,
 };
@@ -160,25 +160,25 @@ function initUI() {
     zoom(newZoom);
   });
   homeButton.addEventListener("click", () => {
-    console.log("homeZoom: ", homeZoom);
+    // console.log("homeZoom: ", homeZoom);
     const newZoom = zoomCurrent.xmin == homeZoom.xmin ? zoomOut : homeZoom;
     zoom(newZoom);
   });
   collegeButton.addEventListener("click", () => {
-    console.log("collegeZoom: ", collegeZoom);
+    // console.log("collegeZoom: ", collegeZoom);
     const newZoom =
       zoomCurrent.xmin == collegeZoom.xmin ? zoomOut : collegeZoom;
     zoom(newZoom);
   });
 
   retireButton.addEventListener("click", () => {
-    console.log("retireZoom: ", retireZoom);
+    // console.log("retireZoom: ", retireZoom);
     const newZoom = zoomCurrent.xmin == retireZoom.xmin ? zoomOut : retireZoom;
     zoom(newZoom);
   });
 
   downsizeButton.addEventListener("click", () => {
-    console.log("downsizeZoom: ", downsizeZoom);
+    // console.log("downsizeZoom: ", downsizeZoom);
     const newZoom =
       zoomCurrent.xmin == downsizeZoom.xmin ? zoomOut : downsizeZoom;
     zoom(newZoom);
@@ -191,7 +191,7 @@ function getPos(percentage) {
 
 function drawGraph(path, points) {
   const endY = getPos(points.end - (100 - Number(amountValue)));
-  console.log("endY: ", endY);
+  // console.log("endY: ", endY);
   const endTop = endY + getPos(points.range / 2);
   const endBottom = endY - getPos(points.range / 2);
   const str = `M0,${startY} Q${midX},${midY} ${w},${endTop} V${endBottom} Q${midX},${midY} 0,${startY} Z`;
@@ -220,7 +220,7 @@ function positionPoint(xpos, point) {
     { x: 500, y: endY }
   );
 
-  console.log("edPoint: ", edPoint);
+  // console.log("edPoint: ", edPoint);
 
   point.setAttribute("cx", edPoint.x);
   point.setAttribute("cy", edPoint.y);

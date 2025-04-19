@@ -10,3 +10,51 @@
 svg {
   border: 1px solid #cccccc;
 }
+
+.ttHolder {
+  padding: 0;
+  margin: 0;
+  border: 0.1px solid #cccccc;
+  border-radius: 2px;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  height: fit-content;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.ttHeader {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  background-color: #000000;
+}
+
+.ttIcon {
+  padding: 2px;
+  margin: 0;
+  background-color: inherit;
+  width: 20px;
+  height: 20px;
+}
+
+.ttTitle {
+  color: white;
+  font-size: 10px;
+  text-align: left;
+  font-weight: bold;
+  width: 100%;
+}
+
+.ttText {
+  font-size: 6px;
+  text-align: left;
+  padding: 4px;
+}
