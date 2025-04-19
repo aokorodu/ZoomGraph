@@ -23,7 +23,7 @@ const ymin = -50;
 
 // position percentages
 const midXPercentage = 50;
-const startYPercentage = 0;
+const startYPercentage = 5;
 const midYPercentage = startYPercentage;
 
 // start and end positions
@@ -51,6 +51,20 @@ const collegeZoom = {
   ymin: 350,
   width: 150,
   height: 150,
+};
+
+const retireZoom = {
+  xmin: 210,
+  ymin: 263,
+  width: 200,
+  height: 200,
+};
+
+const downsizeZoom = {
+  xmin: 300,
+  ymin: 180,
+  width: 280,
+  height: 280,
 };
 
 const zoomOut = {
@@ -156,6 +170,19 @@ function initUI() {
       zoomCurrent.xmin == collegeZoom.xmin ? zoomOut : collegeZoom;
     zoom(newZoom);
   });
+
+  retireButton.addEventListener("click", () => {
+    console.log("retireZoom: ", retireZoom);
+    const newZoom = zoomCurrent.xmin == retireZoom.xmin ? zoomOut : retireZoom;
+    zoom(newZoom);
+  });
+
+  downsizeButton.addEventListener("click", () => {
+    console.log("downsizeZoom: ", downsizeZoom);
+    const newZoom =
+      zoomCurrent.xmin == downsizeZoom.xmin ? zoomOut : downsizeZoom;
+    zoom(newZoom);
+  });
 }
 
 function getPos(percentage) {
@@ -188,8 +215,8 @@ function positionPoint(xpos, point) {
   const endY = getPos(high.end - (100 - Number(amountValue)));
   const edPoint = getBezierPoint(
     xpos / 500,
-    { x: 0, y: 0 },
-    { x: 500 * 0.3, y: 0 },
+    { x: 0, y: (startYPercentage / 100) * h },
+    { x: 500 * 0.3, y: (startYPercentage / 100) * h },
     { x: 500, y: endY }
   );
 
